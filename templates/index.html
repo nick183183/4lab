@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценка вероятностей</title>
+</head>
+<body>
+    <h1>Оценка вероятностей реализации стратегии</h1>
+    <form method="post">
+        <h2>Введите значения λ и μ для каждой пары:</h2>
+        {% for i in range(6) %}
+            <label for="lambda_{{ i }}">λ{{ i+1 }}:</label>
+            <input type="text" id="lambda_{{ i }}" name="lambda_{{ i }}" value="{{ lambda_values[i] if lambda_values else '' }}">
+            <label for="mu_{{ i }}">μ{{ i+1 }}:</label>
+            <input type="text" id="mu_{{ i }}" name="mu_{{ i }}" value="{{ mu_values[i] if mu_values else '' }}">
+            <br>
+        {% endfor %}
+        <button type="submit">Сгенерировать график</button>
+    </form>
+
+    {% if graph_url %}
+        <h2>График вероятностей:</h2>
+        <img src="data:image/png;base64,{{ graph_url }}" alt="График вероятностей">
+    {% endif %}
+</body>
+</html>
